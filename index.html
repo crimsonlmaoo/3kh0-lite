@@ -27,7 +27,223 @@
         &copy; 3kh0, 2024. All rights reserved. You are welcome to use and/or duplicate material from the <a href="https://github.com/3kh0/3kh0-lite" style="color: #22c55e;">GitHub repository</a> with proper credit to 3kh0.<br /><br />
         Contact Echo at <a href="mailto:echo-the-coder@tuta.io" style="color: #22c55e;">echo-the-coder@tuta.io</a>.
     </p>
-    <script src="/js/main.js"></script>
-    <script src="/js/subtitle.js"></script>
+    <script>
+            console.warn(
+        "%cHello!!",
+        "color: red; font-weight: 600; background: yellow; padding: 0 5px; border-radius: 5px",
+        "Feel free to use anything you find here for your projects; credit is appreciated but not required! Visit my website at https://3kh0.net for more information."
+      );
+      
+      // this setting controls if ads are shown,
+      // more info on the README.md file
+      var adStatus = localStorage.getItem("adConsent") === "true"; // default: true
+      
+      if (!adStatus) {
+        (function () {
+          var script = document.createElement("script");
+          script.async = true;
+          script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5756835229788588";
+          script.crossOrigin = "anonymous";
+          document.head.appendChild(script);
+          console.log("Ads enabled, thank you for your support!");
+        })();
+      }
+      
+      const script = document.createElement("script");
+      script.src = "https://data.3kh0.net/script.js";
+      script.defer = true;
+      script.setAttribute("data-website-id", "47d72bde-ba44-4125-b161-00e0c2f5b7f0");
+      document.head.appendChild(script);
+      script.onload = function() {
+        console.log("Data script loaded");
+        umami.track([location.hostname, "pageview"].join("/"));
+      };
+      
+      const local_title = localStorage.getItem("title");
+      const local_icon = localStorage.getItem("icon");
+      if (window.localStorage.hasOwnProperty("title")) {
+        document.title = local_title;
+        console.log("Title set to: " + local_title);
+      }
+      if (window.localStorage.hasOwnProperty("icon")) {
+        document.querySelector("link[rel=icon]").href = local_icon;
+        console.log("Icon set to: " + local_icon);
+      }
+      function getRandomGreeting() {
+        var greetings = [
+          "Beep boop! Are you a robot?",
+          "Did you know I have a discord server?",
+          "How many sides does a circle have?",
+          "You can read btw",
+          "Made you look!",
+          "Redbull gives you wings...",
+          "Since 2020!",
+          "As seen on TV!",
+          "doot doot",
+          "Cold as ice!",
+          "Made in the US!",
+          "Made by 3kh0!",
+          "Reload the page NOW!",
+          "Downloading your passwords...",
+          "Running 3kh0.exe",
+          "WARNING: You may lose braincells if you proceed!",
+          "Do you bite your ice cream?",
+          "#Relatable",
+          "Fortnite is cringe",
+          "You got games on your phone?",
+          "Powered by hamsters!",
+          "*insert cool explosion*",
+          "Got to go fast!",
+          "My iPad passcode is 563543 btw",
+          "Sponsered by RAID SHADOW LEGENDS!",
+          "Sponsored by Honey!",
+          "Sponsored by 3kh0!",
+          "Piplup is cute",
+          "3kh0 is a bozo",
+          "Powered by 128 Gigs of RAM!",
+          "Powered by 16MB of RAM!",
+          "I'm Slim Shady, yes, I'm the real Shady!",
+          "You're a real jerk!",
+          "w h a t",
+          "3kh0.net is here!",
+          "what the dog doin?",
+          "I'm gonna pop some tags",
+          "Shoutout to 4chan!",
+          "thx stackoverflow!",
+          "are you a gaemer?",
+          "It is time to get funky!",
+          "We didn't start the fire! It was always burning, since the world's been turning!",
+          "Don't ask questions if you can't handle the answers!",
+          "If you are using Microsoft Edge, you need some help.",
+          "Living in Spain without the S",
+          "Shoutout to Piplup!",
+          "Shoutout to 3kh0!",
+          "Woo! /g/",
+          "youtube.com/watch?v=dQw4w9WgXcQ",
+          "youtube.com/@3kh0",
+          "Please stop posting furry images.",
+          "Is this the United Airlines costumer service center?",
+          "POV that one person who's 2 braincells are fighting for second place.",
+          "bottem text",
+          "Why do they call it oven if you oven the cold food of out hot eat the food",
+          "No fun allowed",
+          "Your toes will be pulled tonight",
+          "i do love buying birth certificates from the black market! - Piplup",
+          "'If you are trash go play Fortnite you loser' - Sun Tzu, Art of war",
+          "Echo is not a furry I swear",
+          "i wanted free vbucks :(",
+          "Avocados \ud83e\udd51 from Mexico \ud83c\uddf2\ud83c\uddfd",
+          "reload for another message",
+          "Why does the discord server exist",
+          "He stomped on his fruit loops and thus became a cereal killer.",
+          "Techonoblade never dies!",
+          "And just to think I knew him before he was famous",
+          "Trust me, I did not copy Minecraft with this",
+          "It is everyday bro",
+          "That proves you are unusual",
+          "What's my age again?",
+          "This is the 5th time this week, and it's only Monday",
+          "You bum",
+          "Roblox? Cringe!",
+          "Toss the Turtle is pretty fun",
+          "Mission failed, we will get them next time",
+          "NUKE INCOMING!",
+          "I spent too much time making these",
+        ];
+        var randomIndex = Math.floor(Math.random() * greetings.length);
+        return greetings[randomIndex];
+      }
+      
+      document.getElementById("subtitle").innerText = getRandomGreeting();
+      const output = (msg, clr) => {
+      const txt = document.getElementById("console-output");
+      txt.style.color = clr;
+      txt.innerText = msg;
+    };
+    
+    const tcInput = document.getElementById("userinput");
+    
+    const changeTabTitle = () => {
+      const tcInput = document.getElementById("userinput");
+      if (tcInput.value == "") {
+        window.localStorage.removeItem("title");
+        output("No title entered. Default applied, refresh to see changes", "red");
+      } else {
+        window.localStorage.setItem("title", tcInput.value);
+        window.document.title = tcInput.value;
+        output("Title change successful", "green");
+      }
+      tcInput.value = "";
+    };
+    
+    const changeTabIcon = () => {
+      if (tcInput.value === "") {
+        document.querySelector("link[rel*='icon']").href = "";
+        window.localStorage.removeItem("icon");
+        output("No image entered. Default applied, refresh to see changes", "red");
+      } else if (validURL(tcInput.value)) {
+        document.querySelector("link[rel*='icon']").href = tcInput.value;
+        window.localStorage.setItem("icon", tcInput.value);
+        output("Icon change successful", "green");
+      } else {
+        output("Icon change failed. Make sure you are using a valid URL", "red");
+      }
+      tcInput.value = "";
+    };
+    
+    const validURL = (str) => {
+      const exp = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+      const reg = new RegExp(exp);
+      return !!reg.test(str);
+    };
+    
+    const resetTabSettings = () => {
+      let items = ["icon", "title"];
+      items.forEach((item) => window.localStorage.removeItem(item));
+      window.location.reload();
+    };
+    
+    function applyUrl(url, title) {
+      document.getElementById("userinput").value = url;
+      changeTabIcon();
+      document.getElementById("userinput").value = title;
+      changeTabTitle();
+      output("Preset applied successfully!", "green");
+    }
+    
+    const url = document.getElementById("url-target");
+    const urlObj = new window.URL(window.location.href);
+    document.getElementById("create").onclick = function () {
+      if (!url.value.startsWith("https://") && !url.value.startsWith("http://")) {
+        url.value = `https://${url.value.split("https://").pop()}`;
+      } else if (url.value.startsWith("http://")) {
+        url.value = `https://${url.value.split("http://").pop()}`;
+      }
+      const win = window.open();
+      win.document.body.style.margin = "0";
+      win.document.body.style.height = "100vh";
+      const iframe = win.document.createElement("iframe");
+      iframe.style.border = "none";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.margin = "0";
+      iframe.referrerpolicy = "no-referrer";
+      iframe.allow = "fullscreen";
+      iframe.src = url.value;
+      win.document.body.appendChild(iframe);
+    };
+    
+    var adConsentCheckbox = document.getElementById("adConsent");
+    
+    adConsentCheckbox.checked = localStorage.getItem("adConsent") === 'true';
+    
+    adConsentCheckbox.addEventListener('change', function () {
+      localStorage.setItem("adConsent", this.checked);
+      console.log("Ad consent status: " + this.checked);
+      alert("Changes saved.");
+    });
+    
+    var adStatus = adConsentCheckbox.checked;
+    </script>
   </body>
 </html>
